@@ -1,0 +1,99 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled5.ipynb",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyOXBTUL5LdjwOtajTrvJGbE",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Jung-ha1/machine-learning/blob/main/DataBase_FinalExam\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6tH4dYPqTX1P",
+        "outputId": "2394f2c9-2f46-4444-aaf4-2a975c58e217"
+      },
+      "source": [
+        "!pip install pymssql\n"
+      ],
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting pymssql\n",
+            "  Downloading pymssql-2.2.2-cp37-cp37m-manylinux_2_24_x86_64.whl (2.6 MB)\n",
+            "\u001b[K     |████████████████████████████████| 2.6 MB 8.7 MB/s \n",
+            "\u001b[?25hInstalling collected packages: pymssql\n",
+            "Successfully installed pymssql-2.2.2\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tGM9WxnuULAI",
+        "outputId": "6f32e762-f3e1-4736-c4e6-5dde2b984129"
+      },
+      "source": [
+        "import pymssql\n",
+        "conn = pymssql.connect(host='210.115.229.77:2433', user = 'M20041', password = '20041@hallym', database = 'M20041')\n",
+        "cursor = conn.cursor()\n",
+        "query = \"SELECT * FROM student WHERE name LIKE '%i%'\"\n",
+        "cursor.execute(query)\n",
+        "\n",
+        "rows = cursor.fetchall()\n",
+        "print(rows, type(rows))\n",
+        "\n",
+        "for row in rows:\n",
+        "  print(row, type(row))"
+      ],
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[('12313', 'TESTINPUT', 'History.', 120), ('19944', 'TESTINPUT', 'History.', 120), ('19999', 'TESTINPUT', 'History', 120), ('44553', 'Peltier', 'Physics', 56), ('54321', 'Williams', 'Comp.Sci.', 54), ('76653', 'Aoi', 'Elec.Eng.', 60), ('98765', 'Bourikas', 'Elec.Eng.', 98)] <class 'list'>\n",
+            "('12313', 'TESTINPUT', 'History.', 120) <class 'tuple'>\n",
+            "('19944', 'TESTINPUT', 'History.', 120) <class 'tuple'>\n",
+            "('19999', 'TESTINPUT', 'History', 120) <class 'tuple'>\n",
+            "('44553', 'Peltier', 'Physics', 56) <class 'tuple'>\n",
+            "('54321', 'Williams', 'Comp.Sci.', 54) <class 'tuple'>\n",
+            "('76653', 'Aoi', 'Elec.Eng.', 60) <class 'tuple'>\n",
+            "('98765', 'Bourikas', 'Elec.Eng.', 98) <class 'tuple'>\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
